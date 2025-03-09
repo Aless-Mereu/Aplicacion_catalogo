@@ -7,6 +7,7 @@ package javabean;
  *     que permite su identificacion y categorizacion.
  * </p>
  * @author Alessandro García
+ * @data 08-03-2025
  * @version 1.0
  */
 public class Familia {

@@ -3,8 +3,21 @@ package javabean;
 import java.util.Objects;
 
 /**
- * Representa un poducto con informacion detallada
- * Esta calse sigue el patron Javabean y proporciona metodos para acceder y modificar sus atributos.
+ * Representa un producto con informacion detallada
+ * <p>
+ *
+ *       Cada producto tiene un identificador unico y una descripcion corta y otra larga
+ *       que permite su identificacion y categorizacion.
+ *       Esta clase sigue el patron Javabean y proporciona metodos para acceder y modificar sus atributos.
+ * </p>
+ *
+ * @author Alessandro Garcia
+ * @data 09-03-2025
+ * @version 1.0
+ */
+
+/**
+ * Descripcion de los atributos en el Constructor
  */
 
 public class Producto {
@@ -20,7 +33,7 @@ public class Producto {
      * Constructor con todos los atributos de la clase Producto.
      *
      * @param idProducto        Identificador unico del producto
-     * @param descripcionCorta  Breve descripciopn del producto.
+     * @param descripcionCorta  Breve descripcion del producto.
      * @param descripcionLarga  Descripcion detallada del producto
      * @param marca             Marca del producto
      * @param precio            Precio del producto
