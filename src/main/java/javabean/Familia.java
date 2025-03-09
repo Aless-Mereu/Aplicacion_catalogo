@@ -84,13 +84,17 @@ public class Familia {
      *     identificador unico {code idFamilia}.
      * </p>
      *
-     * @param obj Objeto a comparar con la instancia actual
+     * @param o Objeto a comparar con la instancia actual
      * @return {@code true} si los objetos son iguales, {@code false} en caso contrario.
      */
-         @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // Si es el mismo objeto en memoria, retorna true
+        if (o == null || getClass() != o.getClass()) return false; // Compara la clase exacta
+        Familia familia = (Familia) o;
+        return idFamilia == familia.idFamilia;
     }
+
 
     /**
      * Devuelve una representacion en cadena del objeto {@code Familia}
