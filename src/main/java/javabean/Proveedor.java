@@ -1,5 +1,7 @@
 package javabean;
 
+import java.util.Objects;
+
 /**
  * Representa a un proveedor con informacion detallada, como cif, nombre, actividad, etc.
  *  <p>
@@ -149,5 +151,28 @@ public class Proveedor {
                 '}';
     }
 
+    /**
+     * Compara si dos objetos son iguales basandose en su identificador unico.
+     * @param o Objeto a comparar
+     * @return {@code true} si los objetos son iguales, {@code false} en caso contrario.
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // Si es el mismo objeto en memoria, retorna true
+        if (o == null || getClass() != o.getClass()) return false; // Compara la clase exacta
+        Proveedor proveedor = (Proveedor) o;
+        return cif.equals(proveedor.cif) ;
+    }
+
+    /**
+     * Calcula el codigo hash del producto basandose en su identificador unico.
+     * @return codigo hash del producto
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(cif);
+    }
 }
 
