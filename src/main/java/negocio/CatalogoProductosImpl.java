@@ -9,12 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase sin atributos que implementa los metodos de ICatalogo.
- * Se crea un ArrayList con los objetos.
+ * Implementacion de la interfaz ICatalogo que gestiona un catalogo de productos.
+ * Se utiliza un ArrayList para almacenar los productos disponibles.
  */
 
 public class CatalogoProductosImpl implements Icatalogo {
     private ArrayList<Producto> lista;
+
+    /**
+     * Constructor que inicializa la lista de productos y carga los datos iniciales.
+     */
 
     public CatalogoProductosImpl() {
         lista = new ArrayList<Producto>();
@@ -22,7 +26,7 @@ public class CatalogoProductosImpl implements Icatalogo {
     }
 
     /**
-     * Metodo que carga una lista con los objetos creados
+     * Metodo que carga una lista inicial de productos con datos de ejemplo
      */
     private void cargarDatos() {
         Familia familia = new Familia("Normal", 1);
@@ -35,14 +39,13 @@ public class CatalogoProductosImpl implements Icatalogo {
         lista.add(new Producto(3, "Zapatillas", "Zapatillas deportivas de Mujer talla 37", "Adidas", 80.00, familia, proveedor));
         lista.add(new Producto(4, "Sudadera", "Sudadera con capucha de mujer", "Puma", 55.00, familia2, proveedor));
         lista.add(new Producto(5, "Chaqueta", "Chaqueta de cuero de mujer talla M", "Zara", 120.00, familia3, proveedor));
-
     }
 
 
     /**
-     * Agrega un nuevo producto al catalogo.
-     *
-     * @param producto
+     * Agrega un nuevo producto al catalogo si no existe previamente.
+     * @param producto producto a agregar.
+     * @return true si el producto se agrego correctamente, false si ya existia.
      */
     @Override
     public boolean altaProducto(Producto producto) {
@@ -54,9 +57,9 @@ public class CatalogoProductosImpl implements Icatalogo {
     }
 
     /**
-     * Elimina un producto del catalogo.
-     *
-     * @param idProducto
+     * Elimina un producto del catalogo por su ID.
+     * @param idProducto Identificador del producto a eliminar
+     * @return true si el producto se elimino correctamente, false si no se encontro.
      */
     @Override
     public boolean eliminaProducto(long idProducto) {
@@ -67,22 +70,20 @@ public class CatalogoProductosImpl implements Icatalogo {
     }
 
     /**
-     * Modifica un producto existente
-     *
-     * @param producto
+     * Modifica un producto existente en el catalogo
+     * @param producto producto con los datos actualizados.
+     * @return true si el producto existe en la lista, false en caso contrario.
      */
     @Override
     public boolean modificaProducto(Producto producto) {
-        if (lista.contains(producto))
-            return true;
-        return false;
+        return lista.contains(producto);
 
     }
 
     /**
-     * Busca un producto por su identificador
-     *
-     * @param idProducto
+     * Busca un producto por su identificador.
+     * @param idProducto Identificador del producto a buscar
+     * @return El producto si se encuentra, null en caso contrario.
      */
     @Override
     public Producto buscarUno(long idProducto) {
@@ -93,7 +94,8 @@ public class CatalogoProductosImpl implements Icatalogo {
     }
 
     /**
-     * Hace una lista con todos los productos.
+     * Obtiene una lista con todos los productos del catalogo.
+     * @return Lista de productos
      */
     @Override
     public List<Producto> buscarTodos() {
@@ -101,11 +103,12 @@ public class CatalogoProductosImpl implements Icatalogo {
     }
 
     /**
-     * Busca productos por familia
-     *
-     * @param idFamilia
+     * Busca productos por familia.
+     * @param idFamilia Identificador de la familia.
+     * @return Lista de productos que pertenecen a una familia especificada.
      */
     @Override
+
     public List<Producto> buscarPorFamilia(int idFamilia) {
         List<Producto> aux = new ArrayList<>();
         for (Producto producto : lista) {
@@ -118,33 +121,51 @@ public class CatalogoProductosImpl implements Icatalogo {
     }
 
     /**
-     * Busca productos por precio
-     *
-     * @param precio
+     * Busca productos por su precio.
+     * @param precio Precio de referencia.
+     * @return Lista de productos que tienen el precio especificado.
      */
     @Override
     public List<Producto> buscarPorPrecio(double precio) {
-        return List.of();
+        List<Producto> aux = new ArrayList<>();
+        for (Producto producto : lista) {
+            if (producto.getPrecio() == precio) {
+                aux.add(producto);
+            }
+        }
+        return aux;
     }
 
     /**
-     * Busca productos por su descripcion
-     *
-     * @param subcadena
+     * Busca productos que contengan una subcadena en su descripcion.
+     * @param subcadena Texto a buscar dentro de la descripcion.
+     * @return Lista de productos cuya descripcion contiene la subcadena especificada
      */
     @Override
     public List<Producto> buscarPorDescripcion(String subcadena) {
-        return List.of();
+        List<Producto> aux = new ArrayList<>();
+        for (Producto producto : lista) {
+            if (producto.getDescripcionCorta().toLowerCase().contains(subcadena)) {
+                aux.add(producto);
+            }
+        }
+        return aux;
     }
 
     /**
-     * Busca productos por su proveedor.
-     *
-     * @param cif
+     * Busca productos por el CIF del proveedor.
+     * @param cif CIF del proveedor.
+     * @return Lista de productos suministrados por el proveedor con el CIF especificado.
      */
     @Override
     public List<Producto> buscarPorProveedor(String cif) {
-        return List.of();
+        List<Producto> aux = new ArrayList<>();
+        for (Producto producto : lista) {
+            if (producto.getProveedor().getCif() == cif) {
+                aux.add(producto);
+            }
+        }
+        return aux;
     }
 
 }
