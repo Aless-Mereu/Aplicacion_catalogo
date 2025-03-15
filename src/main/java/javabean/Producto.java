@@ -223,6 +223,6 @@ public class Producto {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(idProducto);
+        return Long.hashCode(idProducto);
     }
 }

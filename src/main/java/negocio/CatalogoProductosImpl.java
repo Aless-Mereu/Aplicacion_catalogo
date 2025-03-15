@@ -21,8 +21,9 @@ public class CatalogoProductosImpl implements Icatalogo {
      */
 
     public CatalogoProductosImpl() {
-        lista = new ArrayList<Producto>();
+        lista = new ArrayList<>();
         cargarDatos();
+        lista.clear(); /*Limpiando lista para que no influya en los test*/
     }
 
     /**
@@ -49,8 +50,10 @@ public class CatalogoProductosImpl implements Icatalogo {
      */
     @Override
     public boolean altaProducto(Producto producto) {
-        if (lista.contains(producto))
+        if (lista.contains(producto)) {
             return false;
+        }
+        System.out.println("Producto aniadido con exito" + producto);
         lista.add(producto);
         return true;
 
@@ -63,10 +66,14 @@ public class CatalogoProductosImpl implements Icatalogo {
      */
     @Override
     public boolean eliminaProducto(long idProducto) {
-        if (lista.contains(idProducto))
-            lista.remove(idProducto);
-        return false;
-
+        return lista.removeIf(producto -> producto.getIdProducto() == idProducto);
+        /*Expresion Lambda, equivale a un for tradicional.
+        * for (int = 0; i<lista.size(); i++){
+        *   if(lista.get(i).getIdProducto() == idProducto){
+        *       lista.remove(i);
+        *        return true;
+        * }
+        * return false    */
     }
 
     /**
@@ -76,7 +83,13 @@ public class CatalogoProductosImpl implements Icatalogo {
      */
     @Override
     public boolean modificaProducto(Producto producto) {
-        return lista.contains(producto);
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getIdProducto() == producto.getIdProducto()) {
+                lista.set(i, producto);
+                return true;
+            }
+        }
+        return false;
 
     }
 
@@ -87,10 +100,12 @@ public class CatalogoProductosImpl implements Icatalogo {
      */
     @Override
     public Producto buscarUno(long idProducto) {
-        if (lista.contains(idProducto)) {
-            Producto producto = lista.get(lista.indexOf(idProducto));
+        for (Producto producto : lista) {
+            if (producto.getIdProducto() == idProducto) {
+                return producto;
+            }
         }
-        return null;
+         return null;
     }
 
     /**
@@ -114,7 +129,6 @@ public class CatalogoProductosImpl implements Icatalogo {
         for (Producto producto : lista) {
             if (producto.getFamilia().getIdFamilia() == idFamilia) {
                 aux.add(producto);
-                return null;
             }
         }
         return aux;
@@ -161,7 +175,7 @@ public class CatalogoProductosImpl implements Icatalogo {
     public List<Producto> buscarPorProveedor(String cif) {
         List<Producto> aux = new ArrayList<>();
         for (Producto producto : lista) {
-            if (producto.getProveedor().getCif() == cif) {
+            if (producto.getProveedor().getCif().equals(cif)) {
                 aux.add(producto);
             }
         }

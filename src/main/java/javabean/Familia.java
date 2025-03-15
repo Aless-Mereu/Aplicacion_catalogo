@@ -103,9 +103,11 @@ public class Familia {
      */
     @Override
     public String toString() {
-        return super.toString();
+        return "Familia{" +
+                "idFamilia=" + idFamilia +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
-
 }
 
 
