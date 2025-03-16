@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *Utiliza JUnit5 para realizar las pruebas unitarias sobra las funcionalidades
  * de la clase CatalogoProductosImpl.
  * @author Alessandro Garcia Mereu
- * @date 12-02-2025
+ * @date 12-03-2025
  * @version 1.0
  */
 class CatalogoProductosImplTest {
