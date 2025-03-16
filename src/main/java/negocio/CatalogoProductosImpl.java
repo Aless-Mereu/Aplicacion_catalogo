@@ -11,6 +11,9 @@ import java.util.List;
 /**
  * Implementacion de la interfaz ICatalogo que gestiona un catalogo de productos.
  * Se utiliza un ArrayList para almacenar los productos disponibles.
+ * @author Alessandro Garcia Mereu
+ * @date 11-03-2025
+ * @version 1.0
  */
 
 public class CatalogoProductosImpl implements Icatalogo {

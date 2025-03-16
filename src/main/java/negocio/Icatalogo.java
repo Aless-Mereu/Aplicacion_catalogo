@@ -6,6 +6,9 @@ import java.util.List;
 
 /**
  * Interfaz para la gestion de un catalogo de productos
+ * @author Alessandro Garcia Mereu
+ * @date 10-03-2025
+ * @version 1.0
  */
 
 public interface Icatalogo {
